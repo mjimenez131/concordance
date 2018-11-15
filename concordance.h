@@ -85,22 +85,22 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
   }
 }
 
-// TO DO
+// TO DO: add a (word, line_number) to the multimap. Do not add if the same (word, line_number) is already present
 void concordance::add_word(const std::string& word, size_t line) {
 
 }
 
-// TO DO
+// TO DO: return the total number of words of lenth size
 size_t concordance::total_words(size_t size) const {
 	return 9999;
 }
 
-// TO DO
+// TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
 	return 9999;
 }
 
-// TO DO
+// TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
 void concordance::print(std::ostream& out) const {
 	out << "COMPLETE ME!" << std::endl;
 }

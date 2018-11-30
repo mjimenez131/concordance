@@ -131,7 +131,7 @@ size_t concordance::total_words(size_t size) const {
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
-	return word_map_.size(); // just returns value of all the words inside no matter what length.
+	return word_map_.size()-1; // just returns value of all the words inside no matter what length.
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document

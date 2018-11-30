@@ -136,11 +136,11 @@ size_t concordance::total_words() const {
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
 void concordance::print(std::ostream& out) const {
-for (auto &i : word_map_)
-{
+	for (auto &i : word_map_)
+	{
 		std::string word;
 		word = i.first;
-		cout << word << " : ";
+		out << word << " : ";
 		std::list<std::string>::const_iterator iter;
 		iter = lineString.begin();
 		for (int j = 0; j < lineString.size(); j++)
@@ -158,10 +158,12 @@ for (auto &i : word_map_)
 				|| (s.find("\"" + word + "\"") != std::string::npos) || (s.find("\"" + word + " ") != std::string::npos)
 				|| (s.find("(" + word + ")") != std::string::npos) || (s.find("(" + word + " ") != std::string::npos))
 			{
-				cout << j + 1 << " ";
+				out << j + 1 << " ";
 			}				
 			iter++;
 		}
-		cout <<std::endl;
+		out <<std::endl;
 	}		
+
+}	
 #endif /* concordance_solution_h */

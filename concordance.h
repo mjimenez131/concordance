@@ -115,23 +115,23 @@ void concordance::add_word(const std::string& word, size_t line) {
 // TO DO: return the total number of words of lenth size
 size_t concordance::total_words(size_t size) const {
 	std::list<std::string>::const_iterator iter;
-	int retval = 0;
+	int retval = 0; // int going to be used to return value of amount of words.
 
 	iter = tempWords.begin();
-	for (int i = 0; i < tempWords.size(); i++)
+	for (int i = 0; i < tempWords.size(); i++) // go through the words added
 	{
 		std::string s;
 		s = *iter;
 		if (s.size() == size)
 			retval++;
-		iter++;
+		iter++; // increase size of iter and retval each time to count 
 	}
-	return retval;
+	return retval; // return value of words in each catrgory.
 }
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
-	return word_map_.size()-1;
+	return word_map_.size(); // just returns value of all the words inside no matter what length.
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document

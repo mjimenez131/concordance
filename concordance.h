@@ -137,9 +137,9 @@ for (int i = 0; i < tempWords.size(); i++)
 	{
 		std::string s;
 		s = *iter;
-		if (s.size() < maxwordlen)
+		if (s.size() < 50)
 {
-	return word_map_.size()-1; // returns the number of all words totaled.
+	return word_map_.size(); // returns the number of all words totaled.
 	}
 	return;
 }

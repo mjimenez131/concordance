@@ -136,9 +136,30 @@ size_t concordance::total_words() const {
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
 void concordance::print(std::ostream& out) const {
-	/*for (auto &i : word_map_)
-		out <<i.first << i.second <<std::endl;*/
-	out << "COMPLETE ME!" << std::endl;
-}
-
+		std::string word;
+		word = i.first;
+		out << word << " : ";
+		std::list<std::string>::const_iterator iter;
+		iter = lineString.begin();
+		for (int j = 0; j < lineString.size(); j++)
+		{
+			std::string s;
+			s = *iter;
+			if (s == " ")
+				continue;
+			s = " " + s;
+			if ((s.find(" " + word + " ") != std::string::npos) || (s.find(" " + word + ".") != std::string::npos) 
+				|| (s.find(" " + word + ",") != std::string::npos) || (s.find(" " + word + ";") != std::string::npos)
+				|| (s.find(" " + word + ":") != std::string::npos) || (s.find(" " + word + "!") != std::string::npos)
+				|| (s.find(" " + word + "?") != std::string::npos) || (s.find(" " + word + "\"") != std::string::npos)
+				|| (s.find(" " + word + "(") != std::string::npos) || (s.find(" " + word + ")") != std::string::npos)
+				|| (s.find("\"" + word + "\"") != std::string::npos) || (s.find("\"" + word + " ") != std::string::npos)
+				|| (s.find("(" + word + ")") != std::string::npos) || (s.find("(" + word + " ") != std::string::npos))
+			{
+				out << j + 1 << " ";
+			}				
+			iter++;
+		}
+		out <<std::endl;
+	}		
 #endif /* concordance_solution_h */

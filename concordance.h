@@ -52,6 +52,7 @@ private:
   size_t maxwordlen_;
   std::vector<size_t> words_at_length_; // number of words of each length
   std::list<std::string> tempWords;
+  std::list<std::string> lineString;
 };
 
 // ALREADY DONE: BREAK A LINE INTO A LIST OF WORDS
@@ -78,6 +79,7 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     
     typedef std::list<std::string> container;
+	lineString.push_back(line);
     container words;                          // split into container, dump ignore chars
     split<container>(line, words, ignore);
     
@@ -98,40 +100,40 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
 
 // TO DO: add a (word, line_number) to the multimap. Do not add if the same (word, line_number) is already present
 void concordance::add_word(const std::string& word, size_t line) {
-	std::list<std::string>::iterator iter; // used an iterator
-	iter = tempWords.begin(); // start at the beggining 
-	for (int i = 0; i < tempWords.size(); i++) // will continue to move until the end is reached.
+	std::list<std::string>::iterator iter;
+	iter = tempWords.begin();
+	for (int i = 0; i < tempWords.size(); i++)
 	{
 		if (*iter == word)
 		{
-			return; // if its found just return
+			return;
 		}
-		iter++; // if not increase iterator and keep moving.
+		iter++;
 	}
-	tempWords.push_back(word); // keep pushing words to make room
-	tempWords.sort(); // sort the words.
+	tempWords.push_back(word);
+	//tempWords.sort();
 }
 
 // TO DO: return the total number of words of lenth size
 size_t concordance::total_words(size_t size) const {
 	std::list<std::string>::const_iterator iter;
-	int retval = 0; // int going to be used to return value of amount of words.
+	int retval = 0;
 
 	iter = tempWords.begin();
-	for (int i = 0; i < tempWords.size(); i++) // go through the words added
+	for (int i = 0; i < tempWords.size(); i++)
 	{
 		std::string s;
 		s = *iter;
 		if (s.size() == size)
 			retval++;
-		iter++; // increase size of iter and retval each time to count 
+		iter++;
 	}
-	return retval; // return value of words in each catrgory.
+	return retval;
 }
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
-	return word_map_.size()-1; // just returns value of all the words inside no matter what length.
+	return word_map_.size()-1;
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
@@ -164,6 +166,7 @@ void concordance::print(std::ostream& out) const {
 		}
 		out <<std::endl;
 	}		
+	out << "COMPLETE ME!" << std::endl;
+}
 
-}	
 #endif /* concordance_solution_h */

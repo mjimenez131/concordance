@@ -51,6 +51,7 @@ private:
   size_t minwordlen_;
   size_t maxwordlen_;
   std::vector<size_t> words_at_length_; // number of words of each length
+  std::list<std::string> tempWords;
 };
 
 // ALREADY DONE: BREAK A LINE INTO A LIST OF WORDS
@@ -83,25 +84,60 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
     typename container::const_iterator cit;
     for (cit = words.cbegin(); cit != words.cend(); ++cit) { add_word(*cit, i); }
   }
+  std::list<std::string>::const_iterator iter;
+  iter = tempWords.begin();
+  for (int i = 0; i < tempWords.size(); i++)
+  {
+	  std::string s;
+	  s = *iter;
+	  word_map_.insert(make_pair(s, s.size()));
+	  iter++;
+  }
 }
+
 
 // TO DO: add a (word, line_number) to the multimap. Do not add if the same (word, line_number) is already present
 void concordance::add_word(const std::string& word, size_t line) {
-
+	std::list<std::string>::iterator iter;
+	iter = tempWords.begin();
+	for (int i = 0; i < tempWords.size(); i++)
+	{
+		if (*iter == word)
+		{
+			return;
+		}
+		iter++;
+	}
+	tempWords.push_back(word);
+	tempWords.sort();
 }
 
 // TO DO: return the total number of words of lenth size
 size_t concordance::total_words(size_t size) const {
-	return 9999;
+	std::list<std::string>::const_iterator iter;
+	int retval = 0;
+
+	iter = tempWords.begin();
+	for (int i = 0; i < tempWords.size(); i++)
+	{
+		std::string s;
+		s = *iter;
+		if (s.size() == size)
+			retval++;
+		iter++;
+	}
+	return retval;
 }
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
-	return 9999;
+	return word_map_.size()-1;
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
 void concordance::print(std::ostream& out) const {
+	/*for (auto &i : word_map_)
+		out <<i.first << i.second <<std::endl;*/
 	out << "COMPLETE ME!" << std::endl;
 }
 

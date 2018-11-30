@@ -52,7 +52,7 @@ private:
   size_t maxwordlen_;
   std::vector<size_t> words_at_length_; // number of words of each length
   std::list<std::string> tempWords;
-  std::list<std::string> lineString;
+  std::list<std::string> lineString; // going to be used to print out 
 };
 
 // ALREADY DONE: BREAK A LINE INTO A LIST OF WORDS
@@ -100,32 +100,32 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
 
 // TO DO: add a (word, line_number) to the multimap. Do not add if the same (word, line_number) is already present
 void concordance::add_word(const std::string& word, size_t line) {
-	std::list<std::string>::iterator iter;
-	iter = tempWords.begin();
+	std::list<std::string>::iterator iter; // use iterator
+	iter = tempWords.begin(); // start from beginning 
 	for (int i = 0; i < tempWords.size(); i++)
 	{
-		if (*iter == word)
+		if (*iter == word) // if it is found then just return it to be added
 		{
 			return;
 		}
-		iter++;
+		iter++; // if not keep moving on
 	}
-	tempWords.push_back(word);
-	//tempWords.sort();
+	tempWords.push_back(word); // push to order
+	
 }
 
 // TO DO: return the total number of words of lenth size
 size_t concordance::total_words(size_t size) const {
 	std::list<std::string>::const_iterator iter;
-	int retval = 0;
+	int retval = 0; // return value of total words of each length
 
-	iter = tempWords.begin();
+	iter = tempWords.begin(); // start from beginning like add function 
 	for (int i = 0; i < tempWords.size(); i++)
 	{
 		std::string s;
 		s = *iter;
 		if (s.size() == size)
-			retval++;
+			retval++; // if it is the same size increace the value and move on by increasing iterator.
 		iter++;
 	}
 	return retval;
@@ -133,7 +133,7 @@ size_t concordance::total_words(size_t size) const {
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
-	return word_map_.size()-1;
+	return word_map_.size()-1; // returns the number of all words totaled.
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
@@ -142,16 +142,16 @@ void concordance::print(std::ostream& out) const {
 	{
 		std::string word;
 		word = i.first;
-		out << word << " : ";
+		out << word << " : "; // used to take the iterator position and print out the word its at in the string. 
 		std::list<std::string>::const_iterator iter;
-		iter = lineString.begin();
+		iter = lineString.begin(); 
 		for (int j = 0; j < lineString.size(); j++)
 		{
 			std::string s;
 			s = *iter;
-			if (s == " ")
+			if (s == " ") // if s isnt empty then move on to test.
 				continue;
-			s = " " + s;
+			s = " " + s; // all functions below test to see if any pronunciation is used and wont count for.
 			if ((s.find(" " + word + " ") != std::string::npos) || (s.find(" " + word + ".") != std::string::npos) 
 				|| (s.find(" " + word + ",") != std::string::npos) || (s.find(" " + word + ";") != std::string::npos)
 				|| (s.find(" " + word + ":") != std::string::npos) || (s.find(" " + word + "!") != std::string::npos)
@@ -160,13 +160,13 @@ void concordance::print(std::ostream& out) const {
 				|| (s.find("\"" + word + "\"") != std::string::npos) || (s.find("\"" + word + " ") != std::string::npos)
 				|| (s.find("(" + word + ")") != std::string::npos) || (s.find("(" + word + " ") != std::string::npos))
 			{
-				out << j + 1 << " ";
+				out << j + 1 << " "; // counts how many time it shows up
 			}				
-			iter++;
+			iter++; // keep moving on in iterator
 		}
 		out <<std::endl;
 	}		
-	out << "COMPLETE ME!" << std::endl;
+	
 }
 
 #endif /* concordance_solution_h */

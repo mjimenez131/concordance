@@ -106,7 +106,7 @@ void concordance::add_word(const std::string& word, size_t line) {
 	iter = tempWords.begin(); // start from beginning 
 	for (int i = 0; i < tempWords.size(); i++)
 	{
-		if (*iter == word && s.size < 50) // if it is found then just return it to be added
+		if (*iter == word && s.size() < 50) // if it is found then just return it to be added
 		{
 			return;
 		}

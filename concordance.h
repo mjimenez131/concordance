@@ -37,10 +37,10 @@ public:
     }
   }
   
-  void add_word(const std::string&, size_t); // TO DO
-  size_t total_words() const; // TO DO
-  size_t total_words(size_t length) const; // TO DO
-  void print(std::ostream&) const; // TO DO
+  void add_word(const std::string&, size_t); 
+  size_t total_words() const; 
+  size_t total_words(size_t length) const; 
+  void print(std::ostream&) const; 
   
   void read_text(std::istream&, const std::string&); // ALREADY DONE
   

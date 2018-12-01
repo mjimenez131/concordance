@@ -101,10 +101,12 @@ void concordance::read_text(std::istream& in, const std::string& ignore) {
 // TO DO: add a (word, line_number) to the multimap. Do not add if the same (word, line_number) is already present
 void concordance::add_word(const std::string& word, size_t line) {
 	std::list<std::string>::iterator iter; // use iterator
+	std::string s;
+	  s = *iter;
 	iter = tempWords.begin(); // start from beginning 
 	for (int i = 0; i < tempWords.size(); i++)
 	{
-		if (*iter == word) // if it is found then just return it to be added
+		if (*iter == word && s.size < 50) // if it is found then just return it to be added
 		{
 			return;
 		}

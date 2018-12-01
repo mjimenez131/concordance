@@ -144,6 +144,7 @@ for (int i = 0; i < tempWords.size(); i++)
 	}
 	return i++;
 }
+}
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
 void concordance::print(std::ostream& out) const {

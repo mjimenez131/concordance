@@ -133,6 +133,7 @@ size_t concordance::total_words(size_t size) const {
 
 // TO DO: return the total number of words of all lengths
 size_t concordance::total_words() const {
+std::list<std::string>::const_iterator iter;
 for (int i = 0; i < tempWords.size(); i++)
 	{
 		std::string s;
@@ -141,7 +142,7 @@ for (int i = 0; i < tempWords.size(); i++)
 {
 	return word_map_.size(); // returns the number of all words totaled.
 	}
-	return;
+	return i++;
 }
 
 // TO DO: print list of words and line numbers as shown in example_concordances.txt in Project requirements document
